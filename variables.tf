@@ -11,7 +11,27 @@ variable "internet_gateway_name" {
   default = "main"
 }
 
-variable "subnets" {
+variable "public_subnet_cidr" {
+  default = "10.0.1.0/24"
+}
+
+variable "private_subnet_cidr" {
+  default = "10.0.10.0/24"
+}
+
+variable "allow_http_public" {
+  default = "80"
+}
+
+variable "allow_https_public" {
+  default = "443"
+}
+
+variable "default_cidr" {
+  default = "0.0.0.0/0"
+}
+
+/*variable "public_subnets" {
   type = map(object({
     cidr_block = string
     availability_zone = string
@@ -56,5 +76,7 @@ variable "subnets" {
       }
   }
 
-}
+}*/
+
+
 
