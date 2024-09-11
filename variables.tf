@@ -19,17 +19,15 @@ variable "private_subnet_cidr" {
   default = "10.0.10.0/24"
 }
 
-variable "allow_http_public" {
-  default = "80"
-}
-
-variable "allow_https_public" {
-  default = "443"
-}
-
 variable "default_cidr" {
   default = "0.0.0.0/0"
 }
+
+variable "eip-domain" {
+  default = "vpc"
+}
+
+
 
 /*variable "public_subnets" {
   type = map(object({

@@ -1,9 +1,13 @@
-output "private_subnet" {
-  value = aws_subnet.private_subnet
+output "private_subnet_id" {
+  value = aws_subnet.private_subnet.id
 }
 
-output "public_subnet" {
-  value = aws_subnet.public_subnet
+output "public_subnet_id" {
+  value = aws_subnet.public_subnet.id
+}
+
+output "vpc_id" {
+  value = aws_vpc.main.id
 }
 
 /*output "subnet_ids" {
