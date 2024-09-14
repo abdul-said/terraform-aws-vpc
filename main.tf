@@ -8,31 +8,31 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "public_subnet" {
-    vpc_id = aws_vpc.main.id
-    availability_zone = data.aws_availability_zones.available.names[0]
-    cidr_block = var.public_subnet_cidr
-
-    tags = {
-    Name = "public_subnet"
-  }
-}
-
-resource "aws_subnet" "private_subnet" {
-    vpc_id = aws_vpc.main.id
-    availability_zone = data.aws_availability_zones.available.names[0]
-    cidr_block = var.private_subnet_cidr
-
-    tags = {
-    Name = "private_subnet"
-  }
-}
-    
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
     Name = var.internet_gateway_name
+  }
+}
+
+resource "aws_subnet" "public_subnet_1" {
+    vpc_id = aws_vpc.main.id
+    availability_zone = data.aws_availability_zones.available.names[0]
+    cidr_block = var.public_subnet_1_cidr
+
+    tags = {
+    Name = "public_subnet_1"
+  }
+}
+
+resource "aws_subnet" "public_subnet_2" {
+    vpc_id = aws_vpc.main.id
+    availability_zone = data.aws_availability_zones.available.names[1]
+    cidr_block = var.public_subnet_2_cidr
+
+    tags = {
+    Name = "public_subnet_2"
   }
 }
 
@@ -49,22 +49,52 @@ resource "aws_route_table" "public" {
   }
 }
 
-resource "aws_route_table_association" "public_rt" {
-  subnet_id      = aws_subnet.public_subnet.id
+resource "aws_route_table_association" "public_rt_1" {
+  subnet_id      = aws_subnet.public_subnet_1.id
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_nat_gateway" "example" {
-  subnet_id     = aws_subnet.private_subnet.id 
-  allocation_id = aws_eip.lb.id
+resource "aws_route_table_association" "public_rt_2" {
+  subnet_id      = aws_subnet.public_subnet_2.id
+  route_table_id = aws_route_table.public.id
+}
 
-  tags = {
-    Name = "gw NAT"
+resource "aws_subnet" "private_subnet_1" {
+    vpc_id = aws_vpc.main.id
+    availability_zone = data.aws_availability_zones.available.names[0]
+    cidr_block = var.private_subnet_1_cidr
+
+    tags = {
+    Name = "private_subnet_1"
   }
 }
 
-resource "aws_eip" "lb" {
-  domain   = var.eip-domain
+resource "aws_subnet" "private_subnet_2" {
+    vpc_id = aws_vpc.main.id
+    availability_zone = data.aws_availability_zones.available.names[1]
+    cidr_block = var.private_subnet_2_cidr
+
+    tags = {
+    Name = "private_subnet_2"
+  }
+}
+
+resource "aws_nat_gateway" "gw_private_subnet_1" {
+  subnet_id     = aws_subnet.private_subnet_1.id 
+  connectivity_type = "private"
+
+  tags = {
+    Name = "gw NAT 1"
+  }
+}
+
+resource "aws_nat_gateway" "gw_private_subnet_2" {
+  subnet_id     = aws_subnet.private_subnet_2.id 
+  connectivity_type = "private"
+
+  tags = {
+    Name = "gw NAT 2"
+  }
 }
 
 resource "aws_route_table" "private" {
@@ -80,7 +110,13 @@ resource "aws_route_table" "private" {
   }
 }
 
-resource "aws_route_table_association" "private_rt" {
-  subnet_id      = aws_subnet.private_subnet.id
+resource "aws_route_table_association" "private_rt_1" {
+  subnet_id      = aws_subnet.private_subnet_1.id
+  route_table_id = aws_route_table.private.id
+  
+}
+
+resource "aws_route_table_association" "private_rt_2" {
+  subnet_id      = aws_subnet.private_subnet_2.id
   route_table_id = aws_route_table.private.id
 }
