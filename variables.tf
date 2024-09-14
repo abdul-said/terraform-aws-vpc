@@ -1,88 +1,22 @@
 
-variable "cidr_block_vpc" {
-  default = "10.0.0.0/16"
-}
+variable "cidr_block_vpc" {}
 
-variable "vpc_name" {
-  default = "main"
-}
+variable "vpc_name" {}
 
-variable "internet_gateway_name" {
-  default = "main"
-}
+variable "internet_gateway_name" {}
 
-variable "public_subnet_1_cidr" {
-  default = "10.0.1.0/24"
-}
+variable "public_subnet_1_cidr" {}
 
-variable "public_subnet_2_cidr" {
-  default = "10.0.2.0/24"
-}
+variable "public_subnet_2_cidr" {}
 
-variable "private_subnet_1_cidr" {
-  default = "10.0.10.0/24"
-}
+variable "private_subnet_1_cidr" {}
 
-variable "private_subnet_2_cidr" {
-  default = "10.0.11.0/24"
-}
+variable "private_subnet_2_cidr" {}
 
-variable "default_cidr" {
-  default = "0.0.0.0/0"
-}
+variable "default_cidr" {}
 
-variable "eip-domain" {
-  default = "vpc"
-}
+variable "eip-domain" {}
 
-
-
-/*variable "public_subnets" {
-  type = map(object({
-    cidr_block = string
-    availability_zone = string
-    is_private = bool
-  }))
-  default = {
-    public_1 = {
-      cidr_block        = "10.0.1.0/24",
-      availability_zone = "eu-west-2a"
-      is_private        = false
-      }
-
-    public_2 = {
-      cidr_block        = "10.0.2.0/24",
-      availability_zone = "eu-west-2b"
-      is_private        = false
-      }
-
-    public_3 = {
-      cidr_block        = "10.0.3.0/24",
-      availability_zone = "eu-west-2c"
-      is_private        = false
-      }
-
-    private_1 = {
-      cidr_block        = "10.0.10.0/24",
-      availability_zone = "eu-west-2a"
-      is_private        = true
-      }
-
-    private_2 = {
-      cidr_block        = "10.0.11.0/24",
-      availability_zone = "eu-west-2b"
-      is_private        = true
-      
-      }
-
-    private_3 = {
-      cidr_block        = "10.0.12.0/24",
-      availability_zone = "eu-west-2c" 
-      is_private        = true
-      }
-  }
-
-}*/
 
 
 
