@@ -1,9 +1,12 @@
 
 VPC Terraform Module 
+
 Overview
+
 This Terraform configuration sets up a Virtual Private Cloud (VPC) with public and private subnets across multiple Availability Zones (AZs) in AWS. It includes an internet gateway for public subnets and a NAT gateway to enable internet access for instances in private subnets. This architecture is scalable and follows best practices for high availability and security, making it suitable for a variety of production workloads, and future projects.
 
 Resources Overview
+
 1. VPC (aws_vpc.main)
 A Virtual Private Cloud (VPC) that defines the network space where all other resources are deployed.
 CIDR block is passed as a variable to allow for customizable address space.
