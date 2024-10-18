@@ -15,7 +15,7 @@ variable "private_subnet_2_cidr" {}
 
 variable "default_cidr" {}
 
-variable "eip-domain" {}
+
 
 
 
