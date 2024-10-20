@@ -15,6 +15,9 @@ variable "private_subnet_2_cidr" {}
 
 variable "default_cidr" {}
 
+variable "private_db_subnet_1_cidr" {}
+
+variable "private_db_subnet_2_cidr" {}
 
 
 

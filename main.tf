@@ -82,7 +82,7 @@ resource "aws_subnet" "private_subnet_2" {
 resource "aws_subnet" "private_db_subnet_1" {
   vpc_id            = aws_vpc.main.id
   availability_zone = data.aws_availability_zones.available.names[0]
-  cidr_block        = var.private_subnet_1_cidr
+  cidr_block        = var.private_db_subnet_1_cidr
 
   tags = {
     Name = "private_db_subnet_1"
@@ -92,7 +92,7 @@ resource "aws_subnet" "private_db_subnet_1" {
 resource "aws_subnet" "private_db_subnet_2" {
   vpc_id            = aws_vpc.main.id
   availability_zone = data.aws_availability_zones.available.names[1]
-  cidr_block        = var.private_subnet_2_cidr
+  cidr_block        = var.private_db_subnet_2_cidr
 
   tags = {
     Name = "private_db_subnet_2"
